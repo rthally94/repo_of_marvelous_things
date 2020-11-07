@@ -18,7 +18,7 @@ class MyViewController : UIViewController {
         
         // 1d. Configure the ViewController for display
         // Assign the configured CollectionView as the view of the ViewController
-        self.view = view
+        self.view = collectionView
         // Set the background to white so it is visible (since it is the root view)
         self.view.backgroundColor = .white
     }
