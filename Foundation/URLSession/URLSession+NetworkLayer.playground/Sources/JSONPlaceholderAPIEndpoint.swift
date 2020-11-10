@@ -1,40 +1,37 @@
 import Foundation
 
 // 1. Define an Enum that conforms to the Endpoint protocol
-enum JSONPlaceholderAPIEndpoint: Endpoint {
+public enum JSONPlaceholderAPIEndpoint: Endpoint {
     // 1a. Add API Endpoints as enum cases
     case getPosts
     case getPost(id: String)
     
     // 1b. Optional: Provide strong types for the endpoint SchemeType and ResourceMethodType
-    enum Scheme: String {
+    internal enum Scheme: String {
         case http, https
     }
     
-    enum ResourceMethod: String {
+    internal enum ResourceMethod: String {
         case get
     }
     
-    typealias SchemeType = Scheme
-    typealias ResourceMethodType = ResourceMethod
-    
     // 1c.  Implement protocol requirements as computer properties.
     //      All properties are implemented a switch statements for simplier future upgrades.
-    var scheme: SchemeType {
+    public var scheme: String {
         switch self {
             default:
-                return .https
+                return Scheme.https.rawValue
         }
     }
     
-    var host: String {
+    public var host: String {
         switch self {
             default:
                 return "jsonplaceholder.typicode.com"
         }
     }
     
-    var path: String {
+    public var path: String {
         switch self {
         case .getPosts:
             return "/posts"
@@ -45,19 +42,19 @@ enum JSONPlaceholderAPIEndpoint: Endpoint {
         }
     }
     
-    var parameters: [URLQueryItem] {
+    public var parameters: [URLQueryItem] {
         switch self {
             default:
                 return []
         }
     }
     
-    var method: ResourceMethodType {
+    public var method: String {
         switch self {
         case .getPosts:
             fallthrough
         case .getPost:
-            return .get
+            return ResourceMethod.get.rawValue
         }
     }
 }

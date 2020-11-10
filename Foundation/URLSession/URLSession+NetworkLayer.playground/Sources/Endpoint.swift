@@ -1,12 +1,9 @@
 import Foundation
 
 /// A protocol to define the parameters of the API request
-protocol Endpoint {
-    associatedtype SchemeType
-    associatedtype ResourceMethodType
-    
+public protocol Endpoint {
     /// HTTP, HTTPS
-    var scheme: SchemeType { get }
+    var scheme: String { get }
     
     /// The host to connect to. (Ex: jsonplaceholder.typicode.com)
     var host: String { get }
@@ -18,5 +15,5 @@ protocol Endpoint {
     var parameters: [URLQueryItem] { get }
     
     /// RESTful resource method to use (Ex: GET, POST, etc)
-    var method: ResourceMethodType { get }
+    var method: String { get }
 }
